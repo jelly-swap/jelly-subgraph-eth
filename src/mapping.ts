@@ -13,7 +13,7 @@ import {
 
 export function handleNewContract(event: NewContract): void {
   let sender = NewContractEntity.load(event.params.sender.toHex());
-  let receiver = NewContractEntity.load(event.params.sender.toHex());
+  let receiver = NewContractEntity.load(event.params.receiver.toHex());
 
   if (sender == null) {
     sender = new NewContractEntity(event.params.sender.toHex());
@@ -32,7 +32,7 @@ export function handleNewContract(event: NewContract): void {
 
 export function handleWithdraw(event: Withdraw): void {
   let sender = WithdrawEntity.load(event.params.sender.toHex());
-  let receiver = WithdrawEntity.load(event.params.sender.toHex());
+  let receiver = WithdrawEntity.load(event.params.receiver.toHex());
 
   if (sender == null) {
     sender = new WithdrawEntity(event.params.sender.toHex());
@@ -51,7 +51,7 @@ export function handleWithdraw(event: Withdraw): void {
 
 export function handleRefund(event: Refund): void {
   let sender = RefundEntity.load(event.params.sender.toHex());
-  let receiver = RefundEntity.load(event.params.sender.toHex());
+  let receiver = RefundEntity.load(event.params.receiver.toHex());
 
   if (sender == null) {
     sender = new RefundEntity(event.params.sender.toHex());
