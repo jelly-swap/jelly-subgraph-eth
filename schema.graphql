@@ -1,6 +1,13 @@
-type ExampleEntity @entity {
+type Jelly @entity {
   id: ID!
-  count: BigInt!
-  inputAmount: BigInt! # uint256
-  outputAmount: BigInt! # uint256
+
+  inputAmount: BigInt!        # uint256
+  outputAmount BigInt!        # uint256
+  expiration BigInt!          # uint256
+  status BigInt!              # uint256
+  hashLock Bytes!             # bytes32
+  sender Bytes!               # address
+  receiver Bytes!             # address
+  outputNetwork string!       # string
+  outputAddress string!       # string
 }
