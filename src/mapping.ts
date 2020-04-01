@@ -1,10 +1,4 @@
-import { BigInt } from "@graphprotocol/graph-ts";
-import {
-  Contract,
-  NewContract,
-  Refund,
-  Withdraw
-} from "../generated/Contract/Contract";
+import { NewContract, Refund, Withdraw } from "../generated/Contract/Contract";
 import {
   NewContractEntity,
   WithdrawEntity,
@@ -31,8 +25,29 @@ export function handleNewContract(event: NewContract): void {
   entity.save();
 }
 
-export function handleRefund(event: Refund): void {
-  // let refund = Refundd.load();
+export function handleWithdraw(event: Withdraw): void {
+  let entity = WithdrawEntity.load(event.transaction.from.toHex());
+
+  if (entity == null) {
+    entity = new WithdrawEntity(event.transaction.from.toHex());
+  }
+
+  entity.withdrawId = event.params.id;
+  entity.secret = event.params.secret;
+  entity.hashLock = event.params.hashLock;
+  entity.sender = event.params.sender;
+  entity.receiver = event.params.receiver;
 }
 
-export function handleWithdraw(event: Withdraw): void {}
+export function handleRefund(event: Refund): void {
+  let entity = RefundEntity.load(event.transaction.from.toHex());
+
+  if (entity == null) {
+    entity = new RefundEntity(event.transaction.from.toHex());
+  }
+
+  entity.refundId = event.params.id;
+  entity.hashLock = event.params.hashLock;
+  entity.sender = event.params.sender;
+  entity.receiver = event.params.receiver;
+}
