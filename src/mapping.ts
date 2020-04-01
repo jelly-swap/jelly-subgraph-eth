@@ -5,37 +5,65 @@ import {
   RefundEntity
 } from "../generated/schema";
 
+import {
+  fillNewContractEntity,
+  fillWithdrawEntity,
+  fillRefundEntity
+} from "./helpers";
+
 export function handleNewContract(event: NewContract): void {
-  let entity = new NewContractEntity(event.params.id.toHex());
+  let sender = NewContractEntity.load(event.params.sender.toHex());
+  let receiver = NewContractEntity.load(event.params.sender.toHex());
 
-  entity.inputAmount = event.params.inputAmount;
-  entity.outputAmount = event.params.outputAmount;
-  entity.expiration = event.params.expiration;
-  entity.hashLock = event.params.hashLock;
-  entity.contractId = event.params.id;
-  entity.sender = event.params.sender;
-  entity.receiver = event.params.receiver;
-  entity.outputNetwork = event.params.outputNetwork;
-  entity.outputAddress = event.params.outputAddress;
+  if (sender == null) {
+    sender = new NewContractEntity(event.params.sender.toHex());
+  }
 
-  entity.save();
+  if (receiver == null) {
+    receiver = new NewContractEntity(event.params.receiver.toHex());
+  }
+
+  sender = fillNewContractEntity(sender as NewContractEntity, event);
+  receiver = fillNewContractEntity(receiver as NewContractEntity, event);
+
+  sender.save();
+  receiver.save();
 }
 
 export function handleWithdraw(event: Withdraw): void {
-  let entity = new WithdrawEntity(event.params.id.toHex());
+  let sender = WithdrawEntity.load(event.params.sender.toHex());
+  let receiver = WithdrawEntity.load(event.params.sender.toHex());
 
-  entity.withdrawId = event.params.id;
-  entity.secret = event.params.secret;
-  entity.hashLock = event.params.hashLock;
-  entity.sender = event.params.sender;
-  entity.receiver = event.params.receiver;
+  if (sender == null) {
+    sender = new WithdrawEntity(event.params.sender.toHex());
+  }
+
+  if (receiver == null) {
+    receiver = new WithdrawEntity(event.params.receiver.toHex());
+  }
+
+  sender = fillWithdrawEntity(sender as WithdrawEntity, event);
+  receiver = fillWithdrawEntity(receiver as WithdrawEntity, event);
+
+  sender.save();
+  receiver.save();
 }
 
 export function handleRefund(event: Refund): void {
-  let entity = new RefundEntity(event.params.id.toHex());
+  let sender = RefundEntity.load(event.params.sender.toHex());
+  let receiver = RefundEntity.load(event.params.sender.toHex());
 
-  entity.refundId = event.params.id;
-  entity.hashLock = event.params.hashLock;
-  entity.sender = event.params.sender;
-  entity.receiver = event.params.receiver;
+  if (sender == null) {
+    sender = new RefundEntity(event.params.sender.toHex());
+  }
+
+  if (receiver == null) {
+    receiver = new RefundEntity(event.params.receiver.toHex());
+  }
+
+  sender = fillRefundEntity(sender as RefundEntity, event);
+  receiver = fillRefundEntity(receiver as RefundEntity, event);
+
+  sender.save();
+  receiver.save();
 }
