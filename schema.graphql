@@ -15,7 +15,7 @@ type Jelly @entity {
 type Withdraw @entity {
   id: ID!
 
-  id: Bytes! # bytes32 indexed
+  withdrawId: Bytes! # bytes32 indexed
   secret: Bytes! # bytes32
   hashLock: Bytes! # bytes32
   sender: Bytes! # address indexed
@@ -25,7 +25,7 @@ type Withdraw @entity {
 type Refund @entity {
   id: ID!
 
-  id: Bytes! # bytes32 indexed
+  refundId: Bytes! # bytes32 indexed
   hashLock: Bytes! # bytes32
   sender: Bytes! # address indexed
   receiver: Bytes! # address indexed
