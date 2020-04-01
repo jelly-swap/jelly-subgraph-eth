@@ -26,6 +26,7 @@ export function handleNewContract(event: NewContract): void {
   entity.outputAmount = event.params.outputAmount;
   entity.expiration = event.params.expiration;
   entity.hashLock = event.params.hashLock;
+  entity.contractId = event.params.id;
   entity.sender = event.params.sender;
   entity.receiver = event.params.receiver;
   entity.outputNetwork = event.params.outputNetwork;
