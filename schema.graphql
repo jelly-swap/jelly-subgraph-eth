@@ -1,4 +1,4 @@
-type NewContractEntity @entity {
+type NewContract @entity {
   id: ID!
 
   inputAmount: BigInt! # uint256
@@ -12,7 +12,7 @@ type NewContractEntity @entity {
   outputAddress: String! # string
 }
 
-type WithdrawEntity @entity {
+type Withdraw @entity {
   id: ID!
 
   withdrawId: Bytes! # bytes32 indexed
@@ -22,7 +22,7 @@ type WithdrawEntity @entity {
   receiver: Bytes! # address indexed
 }
 
-type RefundEntity @entity {
+type Refund @entity {
   id: ID!
 
   refundId: Bytes! # bytes32 indexed
@@ -31,17 +31,17 @@ type RefundEntity @entity {
   receiver: Bytes! # address indexed
 }
 
-type NewContractsEntity @entity {
+type NewContracts @entity {
   id: ID!
-  swaps: [NewContractEntity!]!
+  swaps: [NewContract!]!
 }
 
-type WithdrawsEntity @entity {
+type Withdraws @entity {
   id: ID!
-  swaps: [WithdrawEntity!]!
+  swaps: [Withdraw!]!
 }
 
-type RefundsEntity @entity {
+type Refunds @entity {
   id: ID!
-  swaps: [RefundEntity!]!
+  swaps: [Refund!]!
 }

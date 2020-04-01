@@ -1,11 +1,11 @@
 import { NewContract, Refund, Withdraw } from "../generated/Contract/Contract";
 import {
-  NewContractEntity,
-  NewContractsEntity,
-  WithdrawEntity,
-  WithdrawsEntity,
-  RefundEntity,
-  RefundsEntity
+  NewContract as NewContractEntity,
+  NewContracts as NewContractsEntity,
+  Withdraw as WithdrawEntity,
+  Withdraws as WithdrawsEntity,
+  Refund as RefundEntity,
+  Refunds as RefundsEntity
 } from "../generated/schema";
 
 import {

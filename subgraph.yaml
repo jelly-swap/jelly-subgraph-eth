@@ -15,8 +15,11 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - NewContract
-        - Refund
+        - NewContracts
         - Withdraw
+        - Withdraws
+        - Refund
+        - Refunds
       abis:
         - name: Contract
           file: ./abis/Contract.json
