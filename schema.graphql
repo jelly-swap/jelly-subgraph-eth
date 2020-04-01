@@ -1,4 +1,4 @@
-type Jelly @entity {
+type NewContractEntity @entity {
   id: ID!
 
   inputAmount: BigInt! # uint256
@@ -12,7 +12,7 @@ type Jelly @entity {
   outputAddress: String! # string
 }
 
-type Withdraw @entity {
+type WithdrawEntity @entity {
   id: ID!
 
   withdrawId: Bytes! # bytes32 indexed
@@ -22,7 +22,7 @@ type Withdraw @entity {
   receiver: Bytes! # address indexed
 }
 
-type Refund @entity {
+type RefundEntity @entity {
   id: ID!
 
   refundId: Bytes! # bytes32 indexed
