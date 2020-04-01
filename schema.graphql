@@ -11,3 +11,22 @@ type Jelly @entity {
   outputNetwork: String! # string
   outputAddress: String! # string
 }
+
+type Withdraw @entity {
+  id: ID!
+
+  id: Bytes! # bytes32 indexed
+  secret: Bytes! # bytes32
+  hashLock: Bytes! # bytes32
+  sender: Bytes! # address indexed
+  receiver: Bytes! # address indexed
+}
+
+type Refund @entity {
+  id: ID!
+
+  id: Bytes! # bytes32 indexed
+  hashLock: Bytes! # bytes32
+  sender: Bytes! # address indexed
+  receiver: Bytes! # address indexed
+}
