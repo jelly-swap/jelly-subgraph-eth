@@ -6,11 +6,7 @@ import {
 } from "../generated/schema";
 
 export function handleNewContract(event: NewContract): void {
-  let entity = NewContractEntity.load(event.transaction.from.toHex());
-
-  if (entity == null) {
-    entity = new NewContractEntity(event.transaction.from.toHex());
-  }
+  const entity = new NewContractEntity(event.params.id.toHex());
 
   entity.inputAmount = event.params.inputAmount;
   entity.outputAmount = event.params.outputAmount;
@@ -26,11 +22,7 @@ export function handleNewContract(event: NewContract): void {
 }
 
 export function handleWithdraw(event: Withdraw): void {
-  let entity = WithdrawEntity.load(event.transaction.from.toHex());
-
-  if (entity == null) {
-    entity = new WithdrawEntity(event.transaction.from.toHex());
-  }
+  const entity = new WithdrawEntity(event.params.id.toHex());
 
   entity.withdrawId = event.params.id;
   entity.secret = event.params.secret;
@@ -40,11 +32,7 @@ export function handleWithdraw(event: Withdraw): void {
 }
 
 export function handleRefund(event: Refund): void {
-  let entity = RefundEntity.load(event.transaction.from.toHex());
-
-  if (entity == null) {
-    entity = new RefundEntity(event.transaction.from.toHex());
-  }
+  const entity = new RefundEntity(event.params.id.toHex());
 
   entity.refundId = event.params.id;
   entity.hashLock = event.params.hashLock;
