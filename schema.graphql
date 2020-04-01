@@ -4,7 +4,6 @@ type Jelly @entity {
   inputAmount: BigInt! # uint256
   outputAmount: BigInt! # uint256
   expiration: BigInt! # uint256
-  status: BigInt! # uint256
   hashLock: Bytes! # bytes32
   sender: Bytes! # address
   receiver: Bytes! # address
