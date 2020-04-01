@@ -1,13 +1,13 @@
 type Jelly @entity {
   id: ID!
 
-  inputAmount: BigInt!        # uint256
-  outputAmount BigInt!        # uint256
-  expiration BigInt!          # uint256
-  status BigInt!              # uint256
-  hashLock Bytes!             # bytes32
-  sender Bytes!               # address
-  receiver Bytes!             # address
-  outputNetwork string!       # string
-  outputAddress string!       # string
+  inputAmount: BigInt! # uint256
+  outputAmount: BigInt! # uint256
+  expiration: BigInt! # uint256
+  status: BigInt! # uint256
+  hashLock: Bytes! # bytes32
+  sender: Bytes! # address
+  receiver: Bytes! # address
+  outputNetwork: String! # string
+  outputAddress: String! # string
 }
