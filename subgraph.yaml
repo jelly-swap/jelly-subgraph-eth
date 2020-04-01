@@ -14,12 +14,9 @@ dataSources:
       apiVersion: 0.0.3
       language: wasm/assemblyscript
       entities:
-        - NewContract
-        - NewContracts
-        - Withdraw
-        - Withdraws
-        - Refund
-        - Refunds
+        - NewContractEntity
+        - WithdrawEntity
+        - RefundEntity
       abis:
         - name: Contract
           file: ./abis/Contract.json

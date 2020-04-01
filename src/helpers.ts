@@ -1,8 +1,8 @@
 import { NewContract, Refund, Withdraw } from "../generated/Contract/Contract";
 import {
-  NewContract as NewContractEntity,
-  Withdraw as WithdrawEntity,
-  Refund as RefundEntity
+  NewContractEntity,
+  WithdrawEntity,
+  RefundEntity
 } from "../generated/schema";
 
 export const fillNewContractEntity = (
