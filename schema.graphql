@@ -30,3 +30,18 @@ type RefundEntity @entity {
   sender: Bytes! # address indexed
   receiver: Bytes! # address indexed
 }
+
+type NewContractsEntity @entity {
+  id: ID!
+  swaps: [NewContractEntity!]!
+}
+
+type WithdrawsEntity @entity {
+  id: ID!
+  swaps: [WithdrawEntity!]!
+}
+
+type RefundsEntity @entity {
+  id: ID!
+  swaps: [RefundEntity!]!
+}
