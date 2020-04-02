@@ -15,11 +15,8 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - NewContract
-        - NewContracts
         - Withdraw
-        - Withdraws
         - Refund
-        - Refunds
       abis:
         - name: Contract
           file: ./abis/Contract.json
@@ -31,3 +28,25 @@ dataSources:
         - event: Withdraw(indexed bytes32,bytes32,bytes32,indexed address,indexed address)
           handler: handleWithdraw
       file: ./src/mapping.ts
+templates:
+  # These data sources templates exist to support the different flags that a token could specify- kind: ethereum/contract
+  - kind: ethereum/contract
+    name: Contract
+    network: ropsten
+    source:
+      abi: Contract
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.3
+      language: wasm/assemblyscript
+      file: ./src/mapping.ts
+      entities:
+        - NewContractSender
+        - NewContractReceiver
+        - WithdrawSender
+        - WithdrawReceiver
+        - RefundSender
+        - RefundReceiver
+      abis:
+        - name: Contract
+          file: ./abis/Contract.json

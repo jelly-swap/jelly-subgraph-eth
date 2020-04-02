@@ -1,47 +1,73 @@
+# New Contract
+
 type NewContract @entity {
   id: ID!
 
-  inputAmount: BigInt! # uint256
-  outputAmount: BigInt! # uint256
-  expiration: BigInt! # uint256
-  hashLock: Bytes! # bytes32
-  contractId: Bytes! # bytes32
-  sender: Bytes! # address
-  receiver: Bytes! # address
-  outputNetwork: String! # string
-  outputAddress: String! # string
+  inputAmount: BigInt!
+  outputAmount: BigInt!
+  expiration: BigInt!
+  contractId: Bytes!
+  hashLock: Bytes!
+  sender: Bytes!
+  receiver: Bytes!
+  outputNetwork: String!
+  outputAddress: String!
 }
+
+type NewContractSender @entity {
+  id: ID!
+
+  swaps: [NewContract!]!
+}
+
+type NewContractReceiver @entity {
+  id: ID!
+
+  swaps: [NewContract!]!
+}
+
+# Withdraw
 
 type Withdraw @entity {
   id: ID!
 
-  withdrawId: Bytes! # bytes32 indexed
-  secret: Bytes! # bytes32
-  hashLock: Bytes! # bytes32
-  sender: Bytes! # address indexed
-  receiver: Bytes! # address indexed
+  withdrawId: Bytes!
+  secret: Bytes!
+  hashLock: Bytes!
+  sender: Bytes!
+  receiver: Bytes!
 }
 
+type WithdrawSender @entity {
+  id: ID!
+
+  withdraws: [Withdraw!]!
+}
+
+type WithdrawReceiver @entity {
+  id: ID!
+
+  withdraws: [Withdraw!]!
+}
+
+# Refund
 type Refund @entity {
   id: ID!
 
-  refundId: Bytes! # bytes32 indexed
-  hashLock: Bytes! # bytes32
-  sender: Bytes! # address indexed
-  receiver: Bytes! # address indexed
+  refundId: Bytes!
+  hashLock: Bytes!
+  sender: Bytes!
+  receiver: Bytes!
 }
 
-type NewContracts @entity {
+type RefundSender @entity {
   id: ID!
-  swaps: [NewContract!]!
+
+  refunds: [Refund!]!
 }
 
-type Withdraws @entity {
+type RefundReceiver @entity {
   id: ID!
-  swaps: [Withdraw!]!
-}
 
-type Refunds @entity {
-  id: ID!
-  swaps: [Refund!]!
+  refunds: [Refund!]!
 }

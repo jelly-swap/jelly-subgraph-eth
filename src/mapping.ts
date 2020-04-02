@@ -1,96 +1,120 @@
 import { NewContract, Refund, Withdraw } from "../generated/Contract/Contract";
 import {
   NewContract as NewContractEntity,
-  NewContracts as NewContractsEntity,
+  NewContractSender,
+  NewContractReceiver,
   Withdraw as WithdrawEntity,
-  Withdraws as WithdrawsEntity,
+  WithdrawSender,
+  WithdrawReceiver,
   Refund as RefundEntity,
-  Refunds as RefundsEntity
+  RefundSender,
+  RefundReceiver
 } from "../generated/schema";
 
-import {
-  fillNewContractEntity,
-  fillWithdrawEntity,
-  fillRefundEntity
-} from "./helpers";
-
 export function handleNewContract(event: NewContract): void {
-  let sender = NewContractEntity.load(event.params.sender.toHex());
-  let receiver = NewContractEntity.load(event.params.receiver.toHex());
-  let newContracts = NewContractsEntity.load(event.address.toHex());
+  let newSwap = new NewContractEntity(event.params.id.toHex());
+
+  let sender = NewContractSender.load(event.params.sender.toHex());
+  let receiver = NewContractReceiver.load(event.params.receiver.toHex());
 
   if (sender == null) {
-    sender = new NewContractEntity(event.params.sender.toHex());
+    sender = new NewContractSender(event.params.sender.toHex());
+    sender.swaps = [];
   }
 
   if (receiver == null) {
-    receiver = new NewContractEntity(event.params.receiver.toHex());
+    receiver = new NewContractReceiver(event.params.receiver.toHex());
+    receiver.swaps = [];
   }
 
-  if (newContracts == null) {
-    newContracts = new NewContractsEntity(event.address.toHex());
-  }
+  newSwap.inputAmount = event.params.inputAmount;
+  newSwap.outputAmount = event.params.outputAmount;
+  newSwap.expiration = event.params.expiration;
+  newSwap.contractId = event.params.id;
+  newSwap.hashLock = event.params.hashLock;
+  newSwap.sender = event.params.sender;
+  newSwap.receiver = event.params.receiver;
+  newSwap.outputNetwork = event.params.outputNetwork;
+  newSwap.outputAddress = event.params.outputAddress;
 
-  sender = fillNewContractEntity(sender as NewContractEntity, event);
-  receiver = fillNewContractEntity(receiver as NewContractEntity, event);
+  let senderSwaps = sender.swaps;
+  senderSwaps.push(newSwap.id);
+  sender.swaps = senderSwaps;
 
-  newContracts.swaps.push(sender.id);
+  let receiverSwaps = receiver.swaps;
+  receiverSwaps.push(newSwap.id);
+  receiver.swaps = receiverSwaps;
 
+  newSwap.save();
   sender.save();
   receiver.save();
-  newContracts.save();
 }
 
 export function handleWithdraw(event: Withdraw): void {
-  let sender = WithdrawEntity.load(event.params.sender.toHex());
-  let receiver = WithdrawEntity.load(event.params.receiver.toHex());
-  let withdraws = WithdrawsEntity.load(event.address.toHex());
+  let newWithdraw = new WithdrawEntity(event.params.id.toHex());
+
+  let sender = WithdrawSender.load(event.params.sender.toHex());
+  let receiver = WithdrawReceiver.load(event.params.receiver.toHex());
 
   if (sender == null) {
-    sender = new WithdrawEntity(event.params.sender.toHex());
+    sender = new WithdrawSender(event.params.sender.toHex());
+    sender.withdraws = [];
   }
 
   if (receiver == null) {
-    receiver = new WithdrawEntity(event.params.receiver.toHex());
+    receiver = new WithdrawReceiver(event.params.receiver.toHex());
+    receiver.withdraws = [];
   }
 
-  if (withdraws == null) {
-    withdraws = new WithdrawsEntity(event.address.toHex());
-  }
+  newWithdraw.withdrawId = event.params.id;
+  newWithdraw.secret = event.params.secret;
+  newWithdraw.hashLock = event.params.hashLock;
+  newWithdraw.sender = event.params.sender;
+  newWithdraw.receiver = event.params.receiver;
 
-  sender = fillWithdrawEntity(sender as WithdrawEntity, event);
-  receiver = fillWithdrawEntity(receiver as WithdrawEntity, event);
+  let senderSwaps = sender.withdraws;
+  senderSwaps.push(newWithdraw.id);
+  sender.withdraws = senderSwaps;
 
-  withdraws.swaps.push(sender.id);
+  let receiverSwaps = receiver.withdraws;
+  receiverSwaps.push(newWithdraw.id);
+  receiver.withdraws = receiverSwaps;
 
+  newWithdraw.save();
   sender.save();
   receiver.save();
-  withdraws.save();
 }
 
 export function handleRefund(event: Refund): void {
-  let sender = RefundEntity.load(event.params.sender.toHex());
-  let receiver = RefundEntity.load(event.params.receiver.toHex());
-  let refunds = RefundsEntity.load(event.address.toHex());
+  let newRefund = new RefundEntity(event.params.id.toHex());
+
+  let sender = RefundSender.load(event.params.sender.toHex());
+  let receiver = RefundReceiver.load(event.params.receiver.toHex());
 
   if (sender == null) {
-    sender = new RefundEntity(event.params.sender.toHex());
+    sender = new RefundSender(event.params.sender.toHex());
+    sender.refunds = [];
   }
 
   if (receiver == null) {
-    receiver = new RefundEntity(event.params.receiver.toHex());
+    receiver = new RefundReceiver(event.params.receiver.toHex());
+    receiver.refunds = [];
   }
 
-  if (refunds == null) {
-    refunds = new RefundsEntity(event.params.receiver.toHex());
-  }
+  newRefund.refundId = event.params.id;
+  newRefund.hashLock = event.params.hashLock;
+  newRefund.sender = event.params.sender;
+  newRefund.receiver = event.params.receiver;
 
-  sender = fillRefundEntity(sender as RefundEntity, event);
-  receiver = fillRefundEntity(receiver as RefundEntity, event);
+  let senderSwaps = sender.refunds;
+  senderSwaps.push(newRefund.id);
+  sender.refunds = senderSwaps;
 
-  refunds.swaps.push(sender.id);
+  let receiverSwaps = receiver.refunds;
+  receiverSwaps.push(newRefund.id);
+  receiver.refunds = receiverSwaps;
 
+  newRefund.save();
   sender.save();
   receiver.save();
-  refunds.save();
 }
