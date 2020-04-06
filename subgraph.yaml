@@ -1,13 +1,12 @@
 specVersion: 0.0.2
-repository: https://github.com/AndonMitev/jelly-thegraph
 schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: Contract
-    network: ropsten
+    network: mainnet
     source:
-      address: "0x3b344df6490c77d504352f8760a43e055cb4dac4"
+      address: "0x471B080EffB2bc6fb33c8c6FE6ce1AB46F9f522b"
       abi: Contract
     mapping:
       kind: ethereum/events
@@ -15,8 +14,8 @@ dataSources:
       language: wasm/assemblyscript
       entities:
         - NewContract
-        - Withdraw
         - Refund
+        - Withdraw
       abis:
         - name: Contract
           file: ./abis/Contract.json
@@ -32,7 +31,7 @@ templates:
   # These data sources templates exist to support the different flags that a token could specify- kind: ethereum/contract
   - kind: ethereum/contract
     name: Contract
-    network: ropsten
+    network: mainnet
     source:
       abi: Contract
     mapping:

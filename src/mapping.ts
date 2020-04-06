@@ -8,7 +8,7 @@ import {
   WithdrawReceiver,
   Refund as RefundEntity,
   RefundSender,
-  RefundReceiver
+  RefundReceiver,
 } from "../generated/schema";
 
 export function handleNewContract(event: NewContract): void {

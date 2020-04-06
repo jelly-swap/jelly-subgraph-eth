@@ -1,13 +1,13 @@
 {
-  "name": "jelly",
+  "name": "jelly-swap",
   "license": "UNLICENSED",
   "scripts": {
     "codegen": "graph codegen",
     "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ andonmitev/jelly",
-    "create-local": "graph create --node http://localhost:8020/ andonmitev/jelly",
-    "remove-local": "graph remove --node http://localhost:8020/ andonmitev/jelly",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 andonmitev/jelly"
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ andonmitev/jelly-swap",
+    "create-local": "graph create --node http://localhost:8020/ andonmitev/jelly-swap",
+    "remove-local": "graph remove --node http://localhost:8020/ andonmitev/jelly-swap",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 andonmitev/jelly-swap"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.17.1",
