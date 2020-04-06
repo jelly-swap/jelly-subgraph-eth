@@ -111,7 +111,7 @@ Before deploying our subgraph we need to register our access token. To do that l
 graph auth https://api.thegraph.com/deploy/ MY_PRIVATE_KEY
 ```
 
-Replace MY_PRIVATE_KEY with your keep and DON'T DELETE space infront of MY_PRIVATE_KEY
+Replace MY_PRIVATE_KEY with your key and DON'T DELETE space infront of MY_PRIVATE_KEY
 
 Once we are done with our work and key is setted, we need to deploy it. Subgraph are stored on IPFS. Before deploy we might use:
 
