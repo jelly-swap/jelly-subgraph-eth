@@ -122,6 +122,15 @@ export class NewContract extends Entity {
   set outputAddress(value: string) {
     this.set("outputAddress", Value.fromString(value));
   }
+
+  get transactionHash(): Bytes {
+    let value = this.get("transactionHash");
+    return value.toBytes();
+  }
+
+  set transactionHash(value: Bytes) {
+    this.set("transactionHash", Value.fromBytes(value));
+  }
 }
 
 export class NewContractSender extends Entity {
@@ -278,6 +287,15 @@ export class Withdraw extends Entity {
   set receiver(value: Bytes) {
     this.set("receiver", Value.fromBytes(value));
   }
+
+  get transactionHash(): Bytes {
+    let value = this.get("transactionHash");
+    return value.toBytes();
+  }
+
+  set transactionHash(value: Bytes) {
+    this.set("transactionHash", Value.fromBytes(value));
+  }
 }
 
 export class WithdrawSender extends Entity {
@@ -424,6 +442,15 @@ export class Refund extends Entity {
 
   set receiver(value: Bytes) {
     this.set("receiver", Value.fromBytes(value));
+  }
+
+  get transactionHash(): Bytes {
+    let value = this.get("transactionHash");
+    return value.toBytes();
+  }
+
+  set transactionHash(value: Bytes) {
+    this.set("transactionHash", Value.fromBytes(value));
   }
 }
 

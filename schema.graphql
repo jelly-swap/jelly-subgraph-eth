@@ -12,6 +12,7 @@ type NewContract @entity {
   receiver: Bytes!
   outputNetwork: String!
   outputAddress: String!
+  transactionHash: Bytes!
 }
 
 type NewContractSender @entity {
@@ -36,6 +37,7 @@ type Withdraw @entity {
   hashLock: Bytes!
   sender: Bytes!
   receiver: Bytes!
+  transactionHash: Bytes!
 }
 
 type WithdrawSender @entity {
@@ -58,6 +60,7 @@ type Refund @entity {
   hashLock: Bytes!
   sender: Bytes!
   receiver: Bytes!
+  transactionHash: Bytes!
 }
 
 type RefundSender @entity {

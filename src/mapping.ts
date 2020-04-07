@@ -36,6 +36,7 @@ export function handleNewContract(event: NewContract): void {
   newSwap.receiver = event.params.receiver;
   newSwap.outputNetwork = event.params.outputNetwork;
   newSwap.outputAddress = event.params.outputAddress;
+  newSwap.transactionHash = event.transaction.hash;
 
   let senderSwaps = sender.swaps;
   senderSwaps.push(newSwap.id);
@@ -71,6 +72,7 @@ export function handleWithdraw(event: Withdraw): void {
   newWithdraw.hashLock = event.params.hashLock;
   newWithdraw.sender = event.params.sender;
   newWithdraw.receiver = event.params.receiver;
+  newWithdraw.transactionHash = event.transaction.hash;
 
   let senderSwaps = sender.withdraws;
   senderSwaps.push(newWithdraw.id);
@@ -105,6 +107,7 @@ export function handleRefund(event: Refund): void {
   newRefund.hashLock = event.params.hashLock;
   newRefund.sender = event.params.sender;
   newRefund.receiver = event.params.receiver;
+  newRefund.transactionHash = event.transaction.hash;
 
   let senderSwaps = sender.refunds;
   senderSwaps.push(newRefund.id);
