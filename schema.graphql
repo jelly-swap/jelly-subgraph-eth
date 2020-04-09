@@ -13,6 +13,7 @@ type NewContract @entity {
   outputNetwork: String!
   outputAddress: String!
   transactionHash: Bytes!
+  isSender: Boolean!
 }
 
 type NewContractSender @entity {

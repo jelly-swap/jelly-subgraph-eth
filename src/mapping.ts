@@ -37,6 +37,7 @@ export function handleNewContract(event: NewContract): void {
   newSwap.outputNetwork = event.params.outputNetwork;
   newSwap.outputAddress = event.params.outputAddress;
   newSwap.transactionHash = event.transaction.hash;
+  newSwap.isSender = true;
 
   let senderSwaps = sender.swaps;
   senderSwaps.push(newSwap.id);
